@@ -3,7 +3,7 @@ import random
 
 class DuckDuckGoose:
 
-    def __init__(self, number_of_players=5, game_odds=15):
+    def __init__(self, number_of_players=5, game_odds=14):
         self.players=number_of_players
         self.current_player=1
         self.odds=game_odds
@@ -34,10 +34,16 @@ class DuckDuckGoose:
             print('Player {0} is {1}'.format(self.current_player, self.duck_or_goose))
             self.is_over=True
 
+def check_for_valid_odds(odds):
+    if odds > 15 or odds < 1:
+        raise ValueError('Number must be between 1 and 15')
+
 def play_duck_duck_goose():
 
     players = input('How many people are playing?    ')
     odds = input('Pick a number between 1 and 15:    ')
+
+    check_for_valid_odds(odds)
 
     current_game = DuckDuckGoose(players, odds)
 
