@@ -3,7 +3,26 @@ import mock
 
 from duck_duck_goose import *
 
-#You can create test classes to group unit tests together
+"""
+Pytest's test discovery is nifty.  It looks for anything in this
+directory with the word 'test' in front of it.
+
+All you have to worry about is making the tests.
+"""
+def test_test_discovery():
+    working = True
+    assert working == True
+
+"""
+Alternatively, you can intentionally skip tests by putting a character
+before the word test or omit it altogether.
+"""
+def _test_this_will_not_be_discovered():
+    assert True == False
+
+"""
+You can create test classes to group unit tests together
+"""
 class TestDuckDuckGoose:
 
     # Unit testing is such a *~breeze~* with mocks!
