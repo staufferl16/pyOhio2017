@@ -25,6 +25,12 @@ def _test_this_will_not_be_discovered():
 def _test_showing_error():
     assert 'This string is cool' == 'This string is rad'
 
+def _test_really_big_string_error():
+    example_string_1 = '0'*1000 + 'a' + '1'*1000
+    example_string_2 = '0'*1000 + 'b' + '1'*1000
+
+    assert example_string_1 == example_string_2
+
 """
 You can create test classes to group unit tests together
 """
@@ -69,7 +75,8 @@ non-trivial data manipulation
 @pytest.mark.parametrize('test_input,expected', [
     (3, False),
     (15, False),
-    (10, True)
+    (10, False),
+    (1, True)
 ])
 def test_decide_if_goose(test_input, expected):
     new_game = DuckDuckGoose()

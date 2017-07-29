@@ -20,7 +20,7 @@ class DuckDuckGoose:
         return random.randint(0, self.odds)
 
     def decide_if_goose(self, game_number):
-        if game_number % 5 == 0 and game_number % 2 == 0:
+        if game_number == 1:
             return True
         else:
             return False
@@ -38,7 +38,7 @@ class DuckDuckGoose:
             self.is_over=True
 
 def check_for_valid_odds(odds):
-    if odds > 15 or odds < 1:
+    if 1 < odds > 15:
         raise ValueError('Number must be between 1 and 15')
 
 def play_duck_duck_goose():
