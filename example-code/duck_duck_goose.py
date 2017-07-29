@@ -16,15 +16,18 @@ class DuckDuckGoose:
         else:
             self.current_player+=1
 
-    def decide_if_goose(self):
-        random_number = random.randint(0,self.odds)
-        if random_number % 5 == 0 and random_number:
+    def create_random_number(self):
+        return random.randint(0, self.odds)
+
+    def decide_if_goose(self, game_number):
+        if game_number % 5 == 0 and game_number % 2 == 0:
             return True
         else:
             return False
 
     def play_game(self):
-        is_goose = self.decide_if_goose()
+        random_number = self.create_random_number()
+        is_goose = self.decide_if_goose(random_number)
         if not is_goose:
             print('Player {0}:  {1}'.format(self.current_player, self.duck_or_goose))
             self.go_to_next_player()

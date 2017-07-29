@@ -20,6 +20,11 @@ before the word test or omit it altogether.
 def _test_this_will_not_be_discovered():
     assert True == False
 
+
+"""It will tell you EXACTLY where things went wrong, making debugging a cinch"""
+def _test_showing_error():
+    assert 'This string is cool' == 'This string is rad'
+
 """
 You can create test classes to group unit tests together
 """
@@ -44,4 +49,28 @@ class TestDuckDuckGoose:
 
         assert bad.type == ValueError
 
-    # You can use fixtures to
+"""
+Fixtures can simplify your testing life.
+"""
+@pytest.fixture
+def game():
+    return DuckDuckGoose()
+
+def test_game_defaults():
+    new_game = game()
+    assert new_game.players == 5
+    assert new_game.odds == 14
+
+"""
+You can use pytest fixtures to create a collection of test parameters.
+Great for dummy checking functions that have edge-cases or perform
+non-trivial data manipulation
+"""
+@pytest.mark.parametrize('test_input,expected', [
+    (3, False),
+    (15, False),
+    (10, True)
+])
+def test_decide_if_goose(test_input, expected):
+    new_game = DuckDuckGoose()
+    assert new_game.decide_if_goose(test_input) == expected
